@@ -1,4 +1,4 @@
-package com.luiza.labs.infrastructure.config;
+package com.luiza.labs.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.info.Info;
