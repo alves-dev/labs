@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: labs
+  data:
+    mongodb:
+      uri: "mongodb://root:aiextraction@localhost:27017/labs?authSource=admin"
