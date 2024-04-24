@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 
 public class BuildResponse {
 
+    private BuildResponse() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static List<UserResponse> build(List<Item> items) {
         List<UserResponse> users = new ArrayList<>();
 
@@ -21,15 +25,8 @@ public class BuildResponse {
                     .collect(Collectors.groupingBy(Item::getOrderId));
 
             List<OrderResponse> orderList = groupedByOrder.entrySet()
-                    .stream().map(e ->
-                            new OrderResponse(
-                                    e.getKey(),
-                                    e.getValue().getFirst().getOrderDate(),
-                                    e.getValue().stream()
-                                            .map(item ->
-                                                    new ProductResponse(item.getProductId(), item.getProductValue()))
-                                            .toList())
-                    ).toList();
+                    .stream().map(BuildResponse::buildOrder)
+                    .toList();
 
             users.add(new UserResponse(
                     key,
@@ -39,6 +36,19 @@ public class BuildResponse {
         });
 
         return users;
+    }
+
+    private static OrderResponse buildOrder(Map.Entry<Long, List<Item>> e) {
+        return new OrderResponse(
+                e.getKey(),
+                e.getValue().getFirst().getOrderDate(),
+                buildProduct(e.getValue()));
+    }
+
+    private static List<ProductResponse> buildProduct(List<Item> items) {
+        return items.stream()
+                .map(item -> new ProductResponse(item.getProductId(), item.getProductValue()))
+                .toList();
     }
 }
 

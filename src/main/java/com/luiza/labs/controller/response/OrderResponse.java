@@ -8,8 +8,7 @@ import java.util.List;
 
 public record OrderResponse(
         @JsonProperty("order_id") Long id,
-        //TODO: parece que isso é String
-        BigDecimal total,
+        String total,
         LocalDate date,
         List<ProductResponse> products
 ) {
@@ -17,7 +16,7 @@ public record OrderResponse(
     public OrderResponse(Long id, LocalDate date, List<ProductResponse> products) {
         this(
                 id,
-                products.stream().map(ProductResponse::value).reduce(BigDecimal.ZERO, BigDecimal::add),
+                products.stream().map(ProductResponse::value).reduce(BigDecimal.ZERO, BigDecimal::add).toString(),
                 date,
                 products
         );
