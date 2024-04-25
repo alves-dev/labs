@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Responsável por construir a resposta da API a partir de uma lista de {@link Item}
+ */
 public class BuildResponse {
 
     private BuildResponse() {

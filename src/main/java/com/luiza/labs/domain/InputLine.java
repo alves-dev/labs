@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Este objeto representa uma linha do arquivo de entrada.
+ * Esta classe transforma uma linha do arquivo de entrada em um objeto {@link Item}.
  */
 public class InputLine {
 

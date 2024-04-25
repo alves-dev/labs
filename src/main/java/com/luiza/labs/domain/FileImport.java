@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * Este objeto representa um arquivo importado.
+ */
 @Document(collection = "file_import")
 public class FileImport {
 

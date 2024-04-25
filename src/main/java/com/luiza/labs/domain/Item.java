@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Este objeto representa uma linha do arquivo de entrada.
+ */
 @Document(collection = "item")
 public class Item implements Serializable {
 

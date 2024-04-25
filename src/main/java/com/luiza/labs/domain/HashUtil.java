@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Classe útil para gerar hash, usando o algoritmo SHA-256.
+ */
 public class HashUtil {
 
     private HashUtil() {

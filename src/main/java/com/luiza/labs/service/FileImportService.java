@@ -32,6 +32,13 @@ public class FileImportService {
         this.fileImportRepository = fileImportRepository;
     }
 
+    /**
+     * Processa o arquivo e salva os dados no banco de dados
+     * @param file
+     * @throws FileException
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
     public void processFile(MultipartFile file) throws FileException, IOException, NoSuchAlgorithmException {
         String hash = validFile(file);
         FileImport fileImport = new FileImport(hash);
@@ -56,6 +63,14 @@ public class FileImportService {
         itemService.saveAll(inputLineList);
     }
 
+    /**
+     * Valida se o arquivo é text/plain e não foi importado anteriormente
+     * @param file
+     * @return Hash do arquivo
+     * @throws FileException Cado o arquivo seja não seja text/plain ou já tenha sido importado antes
+     * @throws IOException Caso não seja possível ler o arquivo
+     * @throws NoSuchAlgorithmException
+     */
     private String validFile(MultipartFile file) throws FileException, IOException, NoSuchAlgorithmException {
         if (file == null || !Objects.equals(file.getContentType(), "text/plain")) {
             throw new FileException("File is null or not is text/plain");
@@ -70,6 +85,12 @@ public class FileImportService {
         return hash;
     }
 
+    /**
+     * Retorna uma lista com os dados do arquivo
+     * @param file Um MultipartFile
+     * @return Uma lista de String onde cada item é uma linha do arquivo
+     * @throws FileException Caso não seja possível ler o arquivo
+     */
     private List<String> readFile(MultipartFile file) throws FileException {
         List<String> result = new ArrayList<>();
 

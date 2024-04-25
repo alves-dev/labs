@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.net.URI;
 
+/**
+ * Esta classe é um handler para as exceções lançadas, ela trata de forma diferente e padroniza o retorno de erros.
+ */
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
 
