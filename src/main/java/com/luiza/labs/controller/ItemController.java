@@ -59,15 +59,16 @@ public class ItemController {
         }
 
         List<Item> items;
+        StringBuilder filter = new StringBuilder();
 
-        String filter = "none";
         if (orderId != null) {
-            filter = "orderId";
+            filter.append("orderId=").append(orderId);
             items = itemService.findByOrderId(orderId);
         } else if (start != null) {
-            filter = "date";
+            filter.append("date=").append(start).append("&").append(end);
             items = itemService.findByOrderDateBetween(start, end);
         } else {
+            filter.append("none");
             items = itemService.findAll();
         }
         log.info("GET -> api/v1/item with filter: {}", filter);
