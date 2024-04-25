@@ -4,6 +4,7 @@ import com.luiza.labs.domain.Item;
 import com.luiza.labs.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,15 +16,19 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public void saveAll(Iterable<Item> items){
+    public void saveAll(Iterable<Item> items) {
         itemRepository.saveAll(items);
     }
 
-    public List<Item> findAll(){
+    public List<Item> findAll() {
         return itemRepository.findAll();
     }
 
-    public List<Item> findByOrderId(Long orderId){
+    public List<Item> findByOrderId(Long orderId) {
         return itemRepository.findByOrderId(orderId);
+    }
+
+    public List<Item> findByOrderDateBetween(LocalDate start, LocalDate end) {
+        return itemRepository.findByOrderDateBetween(start, end);
     }
 }
