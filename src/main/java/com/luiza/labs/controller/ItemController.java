@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/item")
 public class ItemController {
+
+    private final Logger log = LoggerFactory.getLogger(ItemController.class);
 
     private final ItemService itemService;
 
@@ -56,13 +60,17 @@ public class ItemController {
 
         List<Item> items;
 
+        String filter = "none";
         if (orderId != null) {
+            filter = "orderId";
             items = itemService.findByOrderId(orderId);
         } else if (start != null) {
+            filter = "date";
             items = itemService.findByOrderDateBetween(start, end);
         } else {
             items = itemService.findAll();
         }
+        log.info("GET -> api/v1/item with filter: {}", filter);
         return ResponseEntity.ok().body(BuildResponse.build(items));
     }
 }
