@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
 class InputLineTest {
 
     @Test
@@ -24,9 +23,18 @@ class InputLineTest {
     }
 
     @Test
-    void shouldThrowExceptionDuringParsing(){
+    void shouldThrowExceptionDuringParsing() {
         String input = "0000000070                               Palmer Prosacco00000007530000000003     1836.7420210308\n";
-        Assertions.assertThrows(InputException.class, () -> InputLine.parser(input));
+
+        InputException exception = Assertions.assertThrows(InputException.class, () -> InputLine.parser(input));
+        Assertions.assertTrue(exception.getMessage().contains("Invalid line size"));
     }
 
+    @Test
+    void shouldThrowExceptionDuringParsingLine() {
+        String input = "0000000070                              Palmer Prosacco00000007530000000003     1836.7420210338\n";
+
+        InputException exception = Assertions.assertThrows(InputException.class, () -> InputLine.parser(input));
+        Assertions.assertTrue(exception.getMessage().contains("Invalid parse line"));
+    }
 }

@@ -12,9 +12,13 @@ public class HashUtil {
         throw new IllegalStateException("Utility class");
     }
 
-    public static String calculateHash(MultipartFile file) throws IOException, NoSuchAlgorithmException {
+    public static String calculateHash(MultipartFile file) throws NoSuchAlgorithmException, IOException {
+        return calculateHash(file.getBytes());
+    }
+
+    public static String calculateHash(byte[] bytes) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = digest.digest(file.getBytes());
+        byte[] hashBytes = digest.digest(bytes);
 
         StringBuilder hexString = new StringBuilder();
         for (byte hashByte : hashBytes) {
