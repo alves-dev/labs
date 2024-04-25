@@ -2,6 +2,7 @@ package com.luiza.labs.service;
 
 import com.luiza.labs.domain.Item;
 import com.luiza.labs.repository.ItemRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    @CacheEvict(value = "items", allEntries = true)
     public void saveAll(Iterable<Item> items) {
         itemRepository.saveAll(items);
     }
