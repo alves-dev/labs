@@ -2,11 +2,14 @@ package com.luiza.labs.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Document(collection = "item")
-public class Item {
+public class Item implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final Long userId;
     private final String userName;

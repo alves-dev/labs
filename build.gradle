@@ -24,6 +24,10 @@ dependencies {
 	// data base
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
+	// Cache Dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
 	// tests
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
