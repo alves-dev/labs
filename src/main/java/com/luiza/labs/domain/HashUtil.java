@@ -8,6 +8,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
 
+    private HashUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String calculateHash(MultipartFile file) throws IOException, NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hashBytes = digest.digest(file.getBytes());
