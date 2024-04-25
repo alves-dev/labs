@@ -32,7 +32,6 @@ public class FileImportService {
         this.fileImportRepository = fileImportRepository;
     }
 
-    //TODO: rodar de forma assincrona
     public void processFile(MultipartFile file) throws FileException, IOException, NoSuchAlgorithmException {
         String hash = validFile(file);
         FileImport fileImport = new FileImport(hash);
