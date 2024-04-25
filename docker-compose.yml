@@ -1,0 +1,60 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:7.0
+    networks:
+      - labs
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  redis:
+    image: redis:6.0
+    networks:
+      - labs
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  labs:
+    image: labs
+    ports:
+      - 8080:8080
+    networks:
+      - labs
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    depends_on:
+      - mongo
+      - redis
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8888:8081
+    networks:
+      - labs
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M
+
+networks:
+  labs:
+    driver: bridge

@@ -3,7 +3,7 @@ spring:
     name: labs
   data:
     mongodb:
-      uri: "mongodb://root:aiextraction@localhost:27017/labs?authSource=admin"
+      uri: "mongodb://root:root@mongo:27017/labs?authSource=admin"
     redis:
-      port: 16379
-      host: localhost
+      port: 6379
+      host: redis
