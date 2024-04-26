@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,6 @@ public class FileController {
     @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadFile(@RequestParam("file") MultipartFile file) throws FileException, IOException, NoSuchAlgorithmException {
         fileImportService.processFile(file);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).build();
     }
 }
