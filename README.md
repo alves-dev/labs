@@ -26,7 +26,9 @@ sh build_up.sh
 ```
 
 ### Após executar o comando anterior
- - Acesse o [Swagger](http://localhost:8080/swagger-ui/index.html)
+ - Acesse o [Swagger](http://localhost:8080/swagger-ui/index.html) 
+ - **Observação**: Ao executar o `GET` items sem filtros o swagger demora a mostrar os dados pelo fato do tamanho do retorno,
+   o que leva a uma falsa demora no end-point, recomendo fazer essa requisição fora do swagger.
  - Caso queira ver os registros no banco mongo, você pode acessar pelo [Mongo express](http://localhost:8888/)
 
 
@@ -35,8 +37,3 @@ sh build_up.sh
 assim podemos validar o aquivo e retornar uma resposta liberando a requisição.
  - Uma outra possível estrategia seria realizar o processo de normalização e a soma dos pedidos na leitura do aquivo,
    o que reduziria o processo no `GET` do items.
-
-
-TODO: coverage
-
-TODO: testes em
