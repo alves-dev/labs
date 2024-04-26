@@ -32,6 +32,13 @@ sh build_up.sh
  - Caso queira ver os registros no banco mongo, você pode acessar pelo [Mongo express](http://localhost:8888/)
 
 
+## Testes e Coverage
+ - [JUnit](https://junit.org/junit5/) utlizado para execução dos testes juntamente com [mockito](https://site.mockito.org/)
+ - [JaCoCo](https://www.eclemma.org/jacoco/) gera um relatório de cobertura de testes
+ - Após executar `./gradlew test` você pode acessar a [pagina](http://localhost:63342/labs/build/reports/jacoco/test/html/index.html)
+que é gerada pelo JaCoCo.
+
+
 ## Possíveis melhorias e evoluções
  - O processamento do arquivo de entrada pode ser realizado em segundo plano, 
 assim podemos validar o aquivo e retornar uma resposta liberando a requisição.
