@@ -1,16 +1,17 @@
 package com.luiza.labs.service;
 
 import com.luiza.labs.domain.FileImport;
+import com.luiza.labs.domain.HashUtil;
+import com.luiza.labs.domain.InputLine;
 import com.luiza.labs.domain.Item;
 import com.luiza.labs.domain.exception.FileException;
 import com.luiza.labs.domain.exception.InputException;
-import com.luiza.labs.domain.InputLine;
 import com.luiza.labs.repository.FileImportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.luiza.labs.domain.HashUtil;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,6 +35,7 @@ public class FileImportService {
 
     /**
      * Processa o arquivo e salva os dados no banco de dados
+     *
      * @param file
      * @throws FileException
      * @throws IOException
@@ -51,8 +53,8 @@ public class FileImportService {
         int fail = 0;
         for (String line : listString) {
             try {
-                success++;
                 inputLineList.add(InputLine.parser(line));
+                success++;
             } catch (InputException e) {
                 fail++;
                 log.warn(e.getMessage());
@@ -65,10 +67,11 @@ public class FileImportService {
 
     /**
      * Valida se o arquivo é text/plain e não foi importado anteriormente
+     *
      * @param file
      * @return Hash do arquivo
-     * @throws FileException Cado o arquivo seja não seja text/plain ou já tenha sido importado antes
-     * @throws IOException Caso não seja possível ler o arquivo
+     * @throws FileException            Cado o arquivo seja não seja text/plain ou já tenha sido importado antes
+     * @throws IOException              Caso não seja possível ler o arquivo
      * @throws NoSuchAlgorithmException
      */
     private String validFile(MultipartFile file) throws FileException, IOException, NoSuchAlgorithmException {
@@ -87,6 +90,7 @@ public class FileImportService {
 
     /**
      * Retorna uma lista com os dados do arquivo
+     *
      * @param file Um MultipartFile
      * @return Uma lista de String onde cada item é uma linha do arquivo
      * @throws FileException Caso não seja possível ler o arquivo
